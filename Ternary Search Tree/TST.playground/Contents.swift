@@ -8,13 +8,16 @@ let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567
 
 //Random string generator from:
 //http://stackoverflow.com/questions/26845307/generate-random-alphanumeric-string-in-swift/26845710
-func randomAlphaNumericString(length: Int) -> String {
+func randomAlphaNumericString(_ length: Int) -> String {
     let allowedCharsCount = UInt32(allowedChars.characters.count)
     var randomString = ""
 
     for _ in (0..<length) {
         let randomNum = Int(arc4random_uniform(allowedCharsCount))
-        let newCharacter = allowedChars[allowedChars.startIndex.advancedBy(randomNum)]
+//        let newCharacter = allowedChars[allowedChars.startIndex.advancedBy(randomNum)]
+      
+        let newCharacter = allowedChars[allowedChars.index(allowedChars.startIndex, offsetBy: randomNum)]
+      
         randomString += String(newCharacter)
     }
 

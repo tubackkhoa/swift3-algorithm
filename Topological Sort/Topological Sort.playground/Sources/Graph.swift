@@ -7,11 +7,12 @@ public class Graph: CustomStringConvertible {
     adjacencyLists = [Node : [Node]]()
   }
 
-  public func addNode(value: Node) -> Node {
+  public func addNode(_ value: Node) -> Node {
     adjacencyLists[value] = []
     return value
   }
-
+  
+  // write a label, if we have the same name, we should remove it in swift 3
   public func addEdge(fromNode from: Node, toNode to: Node) -> Bool {
     adjacencyLists[from]?.append(to)
     return adjacencyLists[from] != nil ? true : false

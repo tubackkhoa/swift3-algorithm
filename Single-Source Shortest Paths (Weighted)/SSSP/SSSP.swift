@@ -18,7 +18,7 @@ protocol SSSPAlgorithm {
   associatedtype Q: Equatable, Hashable
   associatedtype P: SSSPResult
 
-  static func apply(graph: AbstractGraph<Q>, source: Vertex<Q>) -> P?
+  static func apply(_ graph: AbstractGraph<Q>, source: Vertex<Q>) -> P?
 
 }
 
@@ -31,6 +31,6 @@ protocol SSSPResult {
 
   associatedtype T: Equatable, Hashable
 
-  func distance(to: Vertex<T>) -> Double?
-  func path(to: Vertex<T>, inGraph graph: AbstractGraph<T>) -> [T]?
+  func distance(_ to: Vertex<T>) -> Double?
+  func path(_ to: Vertex<T>, inGraph graph: AbstractGraph<T>) -> [T]?
 }

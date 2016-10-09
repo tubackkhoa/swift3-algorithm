@@ -1,4 +1,4 @@
-func breadthFirstSearchShortestPath(graph: Graph, source: Node) -> Graph {
+func breadthFirstSearchShortestPath(_ graph: Graph, source: Node) -> Graph {
   let shortestPathGraph = graph.duplicate()
 
   var queue = Queue<Node>()

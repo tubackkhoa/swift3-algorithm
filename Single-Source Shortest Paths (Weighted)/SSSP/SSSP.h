@@ -1,7 +1,7 @@
 //
 //  SSSP.h
 //  SSSP
-//
+//  after export we can import like a Module
 //  Created by Andrew McKnight on 5/8/16.
 //
 

@@ -8,7 +8,7 @@
 import Foundation
 import Graph
 
-public struct BellmanFord<T where T: Hashable> {
+public struct BellmanFord<T> where T: Hashable {
   public typealias Q = T
 }
 
@@ -30,12 +30,12 @@ extension BellmanFord: SSSPAlgorithm {
    - returns a `BellmanFordResult` struct which can be queried for
    shortest paths and their total weights, or `nil` if a negative weight cycle exists
  */
-  public static func apply(graph: AbstractGraph<T>, source: Vertex<Q>) -> BellmanFordResult<T>? {
+  public static func apply(_ graph: AbstractGraph<T>, source: Vertex<Q>) -> BellmanFordResult<T>? {
     let vertices = graph.vertices
     let edges = graph.edges
 
-    var predecessors = Array<Int?>(count: vertices.count, repeatedValue: nil)
-    var weights = Array(count: vertices.count, repeatedValue: Double.infinity)
+    var predecessors = Array<Int?>(repeating: nil, count: vertices.count)    
+    var weights = Array(repeating: Double.infinity, count: vertices.count)
     predecessors[source.index] = source.index
     weights[source.index] = 0
 
@@ -78,10 +78,10 @@ extension BellmanFord: SSSPAlgorithm {
  It conforms to the `SSSPResult` procotol which provides methods to
  retrieve distances and paths between given pairs of start and end nodes.
  */
-public struct BellmanFordResult<T where T: Hashable> {
+public struct BellmanFordResult<T> where T: Hashable {
 
-  private var predecessors: [Int?]
-  private var weights: [Double]
+  fileprivate var predecessors: [Int?]
+  fileprivate var weights: [Double]
 
 }
 
@@ -92,7 +92,7 @@ extension BellmanFordResult: SSSPResult {
    This value is the minimal connected weight between the two vertices, or `nil` if no path exists
    - complexity: `Θ(1)` time/space
    */
-  public func distance(to: Vertex<T>) -> Double? {
+  public func distance(_ to: Vertex<T>) -> Double? {
     let distance = weights[to.index]
 
     guard distance != Double.infinity else {
@@ -107,12 +107,12 @@ extension BellmanFordResult: SSSPResult {
    as an array containing the data property of each vertex, or `nil` if no path exists
    - complexity: `Θ(V)` time, `Θ(V^2)` space
    */
-  public func path(to: Vertex<T>, inGraph graph: AbstractGraph<T>) -> [T]? {
+  public func path(_ to: Vertex<T>, inGraph graph: AbstractGraph<T>) -> [T]? {
     guard weights[to.index] != Double.infinity else {
       return nil
     }
 
-    guard let path = recursePath(to, inGraph: graph, path: [to]) else {
+    guard let path = recursePath(to: to, inGraph: graph, path: [to]) else {
       return nil
     }
 
@@ -136,7 +136,7 @@ extension BellmanFordResult: SSSPResult {
       return [ to ]
     }
 
-    guard let buildPath = recursePath(predecessor, inGraph: graph, path: path) else {
+    guard let buildPath = recursePath(to: predecessor, inGraph: graph, path: path) else {
       return nil
     }
 

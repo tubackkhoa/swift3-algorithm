@@ -15,17 +15,17 @@ public enum OperatorType: CustomStringConvertible {
 
   public var description: String {
     switch self {
-      case Add:
+      case .Add:
         return "+"
-      case Subtract:
+      case .Subtract:
         return "-"
-      case Divide:
+      case .Divide:
         return "/"
-      case Multiply:
+      case .Multiply:
         return "*"
-      case Percent:
+      case .Percent:
         return "%"
-      case Exponent:
+      case .Exponent:
         return "^"
     }
   }
@@ -39,13 +39,13 @@ public enum TokenType: CustomStringConvertible {
 
   public var description: String {
     switch self {
-      case OpenBracket:
+      case .OpenBracket:
         return "("
-      case CloseBracket:
+      case .CloseBracket:
         return ")"
-      case Operator(let operatorToken):
+      case .Operator(let operatorToken):
         return operatorToken.description
-      case Operand(let value):
+      case .Operand(let value):
         return "\(value)"
     }
   }
@@ -141,12 +141,12 @@ public struct Token: CustomStringConvertible {
 public class InfixExpressionBuilder {
   private var expression = [Token]()
 
-  public func addOperator(operatorType: OperatorType) -> InfixExpressionBuilder {
+  public func addOperator(_ operatorType: OperatorType) -> InfixExpressionBuilder {
     expression.append(Token(operatorType: operatorType))
     return self
   }
 
-  public func addOperand(operand: Double) -> InfixExpressionBuilder {
+  public func addOperand(_ operand: Double) -> InfixExpressionBuilder {
     expression.append(Token(operand: operand))
     return self
   }
@@ -168,7 +168,7 @@ public class InfixExpressionBuilder {
 }
 
 // This returns the result of the shunting yard algorithm
-public func reversePolishNotation(expression: [Token]) -> String {
+public func reversePolishNotation(_ expression: [Token]) -> String {
 
   var tokenStack = Stack<Token>()
   var reversePolishNotation = [Token]()
@@ -182,7 +182,7 @@ public func reversePolishNotation(expression: [Token]) -> String {
         tokenStack.push(token)
 
       case .CloseBracket:
-        while tokenStack.count > 0, let tempToken = tokenStack.pop() where !tempToken.isOpenBracket {
+        while tokenStack.count > 0, let tempToken = tokenStack.pop(), !tempToken.isOpenBracket {
           reversePolishNotation.append(tempToken)
         }
 
@@ -209,7 +209,9 @@ public func reversePolishNotation(expression: [Token]) -> String {
     reversePolishNotation.append(tokenStack.pop()!)
   }
 
-  return reversePolishNotation.map({token in token.description}).joinWithSeparator(" ")
+//  return reversePolishNotation.map({token in token.description}).joinWithSeparator(" ")
+  
+    return reversePolishNotation.map{$0.description}.joined(separator: " ")
 }
 
 

@@ -15,7 +15,7 @@ public struct Stack<T> {
         return array.count
     }
 
-    public mutating func push(element: T) {
+    public mutating func push(_ element: T) {
         array.append(element)
     }
 
@@ -32,6 +32,23 @@ public struct Stack<T> {
     }
 }
 
+#if swift(>=3.0)
+// remove type, change Generator to Iterator, generate method to makeIterator
+extension Stack: Sequence {
+  public func makeIterator() -> AnyIterator<T> {
+    var curr = self
+    return AnyIterator {
+      _ -> T? in
+      return curr.pop()
+    }
+  }
+  
+  // support swift 2
+  public func generate() -> AnyIterator<T> {
+    return makeIterator()
+  }
+}
+#else
 extension Stack: SequenceType {
     public func generate() -> AnyGenerator<T> {
         var curr = self
@@ -41,3 +58,4 @@ extension Stack: SequenceType {
         }
     }
 }
+#endif
