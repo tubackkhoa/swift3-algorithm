@@ -1,3 +1,9 @@
+# Swift Algorithm Code that is compatible with Swift 3.0/Xcode 8.0 and Swift 2.x/Xcode 7.3 
+
+![Swift Algorithm Club](/Images/sample1.png)
+![Swift Algorithm Club](/Images/sample2.png)
+
+
 ![Swift Algorithm Club](/Images/SwiftAlgorithm-410-transp.png)
 
 # Welcome to the Swift Algorithm Club!

@@ -145,7 +145,7 @@ struct Array2D<T> {
   init(columns: Int, rows: Int, initialValue: T) {
     self.columns = columns
     self.rows = rows
-    array = .init(repeatElement(initialValue, count: rows*columns))
+    array = .init(repeating: initialValue, count: rows*columns)
 // swift 2.3
 //    array = .init(count: rows*columns, repeatedValue: initialValue)
   }
@@ -167,8 +167,7 @@ struct Array2D<T> {
 
 func binomialCoefficient(_ n: Int, _ k: Int) -> Int {
 //  var bc = Array(count: n + 1, repeatedValue: Array(count: n + 1, repeatedValue: 0))
-  let bcInitValue = Array(repeatElement(0, count: n + 1))
-  var bc = Array(repeatElement(bcInitValue, count: n + 1))
+  var bc = Array(repeating: Array(repeating:0, count: n + 1), count: n + 1)
   for i in 0...n {
     bc[i][0] = 1
     bc[i][i] = 1

@@ -1071,6 +1071,12 @@
       location = "group:Images"
       name = "Images">
       <FileRef
+         location = "group:sample1.png">
+      </FileRef>
+      <FileRef
+         location = "group:sample2.png">
+      </FileRef>
+      <FileRef
          location = "group:scheme-settings-for-travis.png">
       </FileRef>
       <FileRef

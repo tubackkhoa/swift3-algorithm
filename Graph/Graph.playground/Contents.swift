@@ -4,7 +4,8 @@ import Graph
 var adjacencyMatrixGraph = AdjacencyMatrixGraph<Int>()
 var adjacencyListGraph = AdjacencyListGraph<Int>()
 
-for graph in [ adjacencyMatrixGraph, adjacencyListGraph ] {
+// add declare type for swift 3 when use abstract type, to specify which abstract class is used
+for graph:AbstractGraph<Int> in [ adjacencyMatrixGraph, adjacencyListGraph ] {
 
   let v1 = graph.createVertex(1)
   let v2 = graph.createVertex(2)

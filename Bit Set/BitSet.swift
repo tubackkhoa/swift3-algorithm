@@ -51,6 +51,7 @@ public struct BitSet {
     If the size is not a multiple of N, then we have to clear out the bits
     that we're not using, or bitwise operations between two differently sized
     BitSets will go wrong.
+     mutating means we can change value without using inout keyword
   */
   fileprivate mutating func clearUnusedBits() {
     words[words.count - 1] &= lastWordMask()

@@ -1,3 +1,6 @@
+
+// start at the root node and explore children nodes
+
 func breadthFirstSearch(_ graph: Graph, source: Node) -> [String] {
   var queue = Queue<Node>()
   queue.enqueue(source)
