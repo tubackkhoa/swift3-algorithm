@@ -3,7 +3,6 @@
 ![Swift Algorithm Club](/Images/sample1.png)
 ![Swift Algorithm Club](/Images/sample2.png)
 
-
 ![Swift Algorithm Club](/Images/SwiftAlgorithm-410-transp.png)
 
 # Welcome to the Swift Algorithm Club!
