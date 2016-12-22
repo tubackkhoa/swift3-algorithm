@@ -25,7 +25,7 @@ public struct Array2D<T> {
 }
 
 
-// initialization
+// initialization, more comment
 var matrix = Array2D(columns: 3, rows: 5, initialValue: 0)
 
 // makes an array of rows * columns elements all filled with zero
